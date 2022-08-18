@@ -30,17 +30,39 @@ int main()
     // Blink green LEDs indicating end of program
 
     while (tempo <= 5.0){
-        L1 != L1;
+
+        L1 = !L1;
         wait(0.1);
         tempo += 0.1;
+        
     }
 
-    while(true)
-    {
-        //L3 = false;
-        //L4 = false;
-        //L5 = false;
+    while(true) {
 
-        
+        L4 = false;
+        L5 = false;
+
+        wait(1);
+
+        M1.period(1/400);
+        M1 = 0.1;
+        wait(0.1);
+        M1 = 0.0;
+
+        M2.period(1/600);
+        M2 = 0.1;
+        wait(0.1);
+        M2 = 0.0;
+
+        M3.period(1/800);
+        M3 = 0.1;
+        wait(0.1);
+        M3 = 0.0;
+
+        M4.period(1/1000);
+        M4 = 0.1;
+        wait(0.1);
+        M4 = 0.0;
+
     }
 }
