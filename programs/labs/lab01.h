@@ -9,10 +9,10 @@ DigitalOut L4 (LED_RED_L, !false);
 DigitalOut L5 (LED_RED_R, !false);
 
 // Define all motors as PWM objects
-PwmOut M1 (MOTOR1);
-PwmOut M2 (MOTOR2);
-PwmOut M3 (MOTOR3);
-PwmOut M4 (MOTOR4);
+PwmOut Motor1 (MOTOR1);
+PwmOut Motor2 (MOTOR2);
+PwmOut Motor3 (MOTOR3);
+PwmOut Motor4 (MOTOR4);
 
 
 float tempo = 0.0;
@@ -27,35 +27,30 @@ int main()
         tempo += 0.1;
     }
     // Turn on red LEDs indicating motors are armed
-    // L4 = false;
-    // L5 = false;
+    L4 = false;
+    L5 = false;
     wait(1);
 
     // Test all motors with different frequencies (to make different noises)
-    M4.period(1.0/400.0);
-    M4 = 0.1;
+    Motor1.period(1.0/400.0);
+    Motor1 = 0.1;
     wait(1);
-    M4.period(1.0/600.0);
+    Motor1 = 0.0;
+
+    Motor2.period(1.0/600.0);
+    Motor2 = 0.2;
     wait(1);
-    M4.period(1.0/800.0);
+    Motor2 = 0.0;
+
+    Motor3.period(1.0/800.0);
+    Motor3 = 0.3;
     wait(1);
-    M4 = 0.0;
+    Motor3 = 0.0;
 
-
-    // M2.period(1.0/400.0);
-    // M2 = 0.2;
-    // wait(0.1);
-    // M2 = 0.0;
-
-    // M3.period(1.0/400.0);
-    // M3 = 0.3;
-    // wait(0.1);
-    // M3 = 0.0;
-
-    // M4.period(1.0/400.0);
-    // M4 = 0.4;
-    // wait(0.1);
-    // M4 = 0.0;
+    Motor4.period(1.0/1000.0);
+    Motor4 = 0.4;
+    wait(1);
+    Motor4 = 0.0;
 
     // Turn off red LEDs indicating motors are disarmed
     L4 = true;
