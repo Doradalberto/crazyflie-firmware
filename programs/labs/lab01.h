@@ -14,8 +14,8 @@ PwmOut M2 (MOTOR2);
 PwmOut M3 (MOTOR3);
 PwmOut M4 (MOTOR4);
 
+
 float tempo = 0.0;
-float tempo 2 = 0.0;
 
 // Main program
 int main()
@@ -27,39 +27,43 @@ int main()
         tempo += 0.1;
     }
     // Turn on red LEDs indicating motors are armed
-    L4 = false;
-    L5 = false;
+    // L4 = false;
+    // L5 = false;
     wait(1);
 
     // Test all motors with different frequencies (to make different noises)
-    M1.period(1/400);
-    M1 = 0.1;
-    wait(0.1);
-    M1 = 0.0;
-
-    M2.period(1/600);
-    M2 = 0.1;
-    wait(0.1);
-    M2 = 0.0;
-
-    M3.period(1/800);
-    M3 = 0.1;
-    wait(0.1);
-    M3 = 0.0;
-
-    M4.period(1/1000);
+    M4.period(1.0/400.0);
     M4 = 0.1;
-    wait(0.1);
+    wait(1);
+    M4.period(1.0/600.0);
+    wait(1);
+    M4.period(1.0/800.0);
+    wait(1);
     M4 = 0.0;
+
+
+    // M2.period(1.0/400.0);
+    // M2 = 0.2;
+    // wait(0.1);
+    // M2 = 0.0;
+
+    // M3.period(1.0/400.0);
+    // M3 = 0.3;
+    // wait(0.1);
+    // M3 = 0.0;
+
+    // M4.period(1.0/400.0);
+    // M4 = 0.4;
+    // wait(0.1);
+    // M4 = 0.0;
 
     // Turn off red LEDs indicating motors are disarmed
     L4 = true;
     L5 = true;
 
     // Blink green LEDs indicating end of program
-    while (tempo2 <= 2.0){
+    while (true){
         L2 = !L2;
         wait(0.1);
-        tempo2 += 0.1;
     }
 }
