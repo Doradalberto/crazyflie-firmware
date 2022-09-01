@@ -7,4 +7,5 @@
 
 // Lab programs
 // #include "programs/labs/lab01.h"
-#include "programs/labs/lab03.h"
+// #include "programs/labs/lab03.h"
+#include "programs/labs/lab04.h"
