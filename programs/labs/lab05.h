@@ -63,7 +63,7 @@ int main() {
     Motor3.period(1.0/500.0);
     Motor4.period(1.0/500.0);
 
-    actuate(0.2,0,0,0);
+    actuate(0.0,0.0,0.0,-0.001);
     wait(5);
     actuate(0,0,0,0);
 }
