@@ -19,23 +19,9 @@ float control_motor(float omega) {
     return pwm;
 }
 
+
+
 // Main program
 int main() {
-    while(true) {
-        L4 = false;
-        Motor1.period(1.0/500.0);
-        Motor1 = control_motor(1000.0);
-        Motor2.period(1.0/500.0);
-        Motor2 = control_motor(2000.0);
-        Motor3.period(1.0/500.0);
-        Motor3 = control_motor(1000.0);
-        Motor4.period(1.0/500.0);
-        Motor4 = control_motor(2000.0);
-        wait(2);
-        Motor1 = 0.0;
-        Motor2 = 0.0;
-        Motor3 = 0.0;
-        Motor4 = 0.0;
-        wait(5);
-    }
+
 }
