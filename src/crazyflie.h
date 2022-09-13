@@ -4,6 +4,7 @@
 // Crazyflie utility variables
 #include "utils/pin_names.h"
 #include "utils/parameters.h"
+#include "modules/mixer.h"
 
 // Crazyflie 2.0 hardware abstraction layer
 #include "drivers/mpu9250.h"    // IMU sensor
