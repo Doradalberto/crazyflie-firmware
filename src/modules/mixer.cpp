@@ -1,7 +1,8 @@
 #include "mixer.h"
 
  // Class constructor
-Mixer::Mixer() : motor_1(MOTOR1), motor_2(MOTOR2), motor_3(MOTOR3), motor_4(MOTOR4){
+Mixer::Mixer() : motor_1(MOTOR1), motor_2(MOTOR2), motor_3(MOTOR3), motor_4(MOTOR4), L1(LED_RED_L,!false), L2(LED_RED_R,!false),L3(LED_BLUE_L,!false){
+
     motor_1.period(1.0/500.0);
     motor_2.period(1.0/500.0);
     motor_3.period(1.0/500.0);
@@ -10,6 +11,8 @@ Mixer::Mixer() : motor_1(MOTOR1), motor_2(MOTOR2), motor_3(MOTOR3), motor_4(MOTO
     motor_2 = 0.0;
     motor_3 = 0.0;
     motor_4 = 0.0;
+
+
 }
 // Actuate motors with desired total trust force (N) and torques (N.m)
 void Mixer::actuate(float f_t, float tau_phi, float tau_theta, float tau_psi)
@@ -49,4 +52,19 @@ float Mixer::control_motor(float omega)
 {
     float pwm = a2*(omega*omega) + (a1*omega);
     return pwm;
+}
+void Mixer::arm(bool armed)
+{
+    while(armed){
+        // Turn on red LEDs indicating motors are armed
+        L1 = false;
+        L2 = false;
+        if(!armed) break;
+    }
+    while(!armed){
+        // Turn on red LEDs indicating motors are armed
+        L3 = false;
+        L3 = false;
+        if(armed) break;
+    }
 }
