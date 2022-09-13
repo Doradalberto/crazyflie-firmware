@@ -4,7 +4,7 @@
 Mixer mixer;
 
 int main(){
-    mixer.actuate(0.7*m*g, 0.0, 0.0, 0.0);
+    mixer.actuate(0.0, 0.0, 0.0, -0.001);
     wait(5);
     mixer.actuate(0.0, 0.0, 0.0, 0.0);
     while(true){
