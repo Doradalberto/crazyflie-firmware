@@ -4,9 +4,11 @@
 Mixer mixer;
 
 int main(){
-    mixer.arm(true);
+    mixer.arm();
     mixer.actuate(0.0, 0.0, 0.0, -0.001);
     wait(5);
     mixer.actuate(0.0, 0.0, 0.0, 0.0);
-    mixer.arm(false);
+    while(true){
+        mixer.disarm();
+    }
 }

@@ -53,18 +53,12 @@ float Mixer::control_motor(float omega)
     float pwm = a2*(omega*omega) + (a1*omega);
     return pwm;
 }
-void Mixer::arm(bool armed)
+void Mixer::arm()
 {
-    while(armed){
-        // Turn on red LEDs indicating motors are armed
-        L1 = false;
-        L2 = false;
-        if(!armed) break;
-    }
-    while(!armed){
-        // Turn on red LEDs indicating motors are armed
-        L3 = false;
-        L3 = false;
-        if(armed) break;
-    }
+    L1 = false;
+    L2 = false;
+}
+void Mixer::disarm(){
+    L1 = true;
+    L2 = true;
 }
