@@ -19,5 +19,8 @@ const float a1 = 2.224e-10; // Lab 02
 const float a2 = 1.258e-07; // Lab 02
 const float kl = 1.313e-08; // Constante de sustentação
 const float kd = 9.628e-11; // Lab 04 
+const float dt = 0.002;
+const float wc = 1;
+const float alpha = (wc*dt)/(1+wc*dt);
 
 #endif

@@ -1,13 +1,35 @@
-#include "PwmOut.h"
-#include "mbed.h"
-#include "crazyflie.h"
+#include "mbed.h" 
+#include "crazyflie.h" 
+#include "USBSerial.h"
 
-AttitudeEstimator attitude_estimator;
+// Define serial object
+USBSerial serial;
+// Define Callback functions
+char command;
+// Define serial command variable
+AttitudeEstimator att_est;
+// Define Ticker objects
+Ticker tic;
+bool flag;
+
+void  callback(){
+    flag = true;
+}
 
 int main(){
-    attitude_estimator.init();
+    att_est.init(); // inicializando
+    tic.attach(&callback, dt);
     while(true){
-        attitude_estimator.estimate();
-
+        if(flag){
+            flag = false;
+            att_est.estimate();
+        }
+        if(serial.readable()){
+            command = serial.getc();
+            if(command == 'p'){
+                serial.printf("%f,%f,%f\n",att_est.phi,att_est.theta,att_est.psi);
+            }
+        }
     }
+
 }

@@ -1,12 +1,6 @@
 #ifndef crazyflie_h
 #define crazyflie_h
 
-// Crazyflie utility variables
-#include "utils/pin_names.h"
-#include "utils/parameters.h"
-#include "modules/mixer.h"
-#include "modules/attitude_estimator.h"
-
 // Crazyflie 2.0 hardware abstraction layer
 // #include "drivers/mpu9250.h"    // IMU sensor
 
@@ -20,5 +14,11 @@
 // Flow deck v2 hardware abstraction layer
 #include "drivers/vl53l1x.h"    // Range sensor
 #include "drivers/pmw3901.h"    // Optical flow sensor
+
+// Crazyflie utility variables
+#include "utils/pin_names.h"
+#include "utils/parameters.h"
+#include "modules/mixer.h"
+#include "modules/attitude_estimator.h"
 
 #endif
