@@ -15,21 +15,13 @@ AttitudeEstimator::AttitudeEstimator() : imu(IMU_SDA,IMU_SCL){
 // Initialize class
 void AttitudeEstimator::init(){
     imu.init();
-    float s = 0;
-    float s1 = 0;
-    float s2 = 0;
-
     for(int i = 0; i < 500; i++){
         imu.read();
-        s += imu.gx;
-        s1 += imu.gy;
-        s2 += imu.gz;
+        p_bias += imu.gx/500.0;
+        q_bias += imu.gy/500.0;
+        r_bias += imu.gz/500.0;
         wait(dt);
     }
-    p_bias = (1/500)*s;
-    q_bias = (1/500)*s;
-    r_bias = (1/500)*s;
-
 }
 
 // Estimate Euler angles (rad) and angular velocities (rad/s)
@@ -37,21 +29,17 @@ void AttitudeEstimator::estimate(){
     imu.read();
     
     p = imu.gx - p_bias;  // Giroscopio 
-    q = imu.gx -  q_bias;
+    q = imu.gy - q_bias;
     r = imu.gz - r_bias;
 
-    float phi_a = atan2(-imu.ay,-imu.az); // Acelerometro 
-    // float phi_g = phi + p*dt; // Linear
-    float phi_g = phi + (p+sin(phi)*tan(theta)*q+cos(phi)*tan(theta)*r)*dt; // Não Linear
-    phi = (1-alpha)*phi_g + alpha*phi_a; 
+    float phi_a = atan2(-imu.ay,-imu.az); 
+    float theta_a = atan2(imu.ax,-((imu.az>0)-(imu.az<0))*sqrt(imu.ay*imu.ay+imu.az*imu.az)); 
 
-    // float theta_a = atan2(imu.ax,-imu.az); // Linear
-    float theta_a = atan2(imu.ax,imu.ax/(-signbit(imu.az)*sqrt(imu.ay*imu.ay+imu.az*imu.az))); // Não linear
-    // float theta_g = theta + q*dt; // Linear
+    float phi_g = phi + (p+sin(phi)*tan(theta)*q+cos(phi)*tan(theta)*r)*dt; 
     float theta_g = theta + (cos(phi)*q-sin(phi)*r)*dt;
-    theta = (1-alpha)*theta_g + alpha*theta_a;
+    float psi_g = psi +(sin(phi)/cos(theta)*q+cos(phi)/cos(theta)*r)*dt;
 
-    // psi = psi + r * dt; // Linear
-    psi = psi +(sin(phi)*(1/cos(theta))*q+cos(phi)*(1/cos(theta))*r)*dt;
-
+    phi = (1.0-alpha)*phi_g + alpha*phi_a; 
+    theta = (1.0-alpha)*theta_g + alpha*theta_a;
+    psi = psi_g; 
 }

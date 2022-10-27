@@ -20,7 +20,16 @@ const float a2 = 1.258e-07; // Lab 02
 const float kl = 1.313e-08; // Constante de sustentação
 const float kd = 9.628e-11; // Lab 04 
 const float dt = 0.002;
-const float wc = 1;
-const float alpha = (wc*dt)/(1+wc*dt);
+const float wc = 1.0;
+const float alpha = (wc*dt)/(1.0+wc*dt);
+const float Ts = 0.3;
+const float OS = 0.002;
+const float zetta = abs(log(OS))/(sqrt(log(OS)*log(OS)+pi*pi));
+const float wn = 4/(zetta*Ts);
+const float kp1 = wn*wn;
+const float kd1 = 2*zetta*wn;
+
+
+
 
 #endif

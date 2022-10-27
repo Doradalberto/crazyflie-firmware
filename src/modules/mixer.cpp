@@ -61,4 +61,8 @@ void Mixer::arm()
 void Mixer::disarm(){
     L1 = true;
     L2 = true;
+    motor_1 = 0.0;
+    motor_2 = 0.0;
+    motor_3 = 0.0;
+    motor_4 = 0.0;
 }
