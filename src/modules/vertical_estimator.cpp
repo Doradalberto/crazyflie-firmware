@@ -12,14 +12,14 @@ void VerticalEstimator::init(){
 }
 
 void VerticalEstimator::predict(float f_t){
-    range.read();
-    z = (1-alpha)*z + alpha*z;
+    w = w + (-g+f_t/m)*dt;
+    z = z + w*dt;
 }
-
 void VerticalEstimator::correct(float phi, float theta){
     range.read();
-    if(range.d < 2.0){
+    if(range.d < 0.05){
         float z_m = range.d*cos(phi)*cos(theta);
-        z = z_m;
+        w = w + l1*dt_range*(z_m - z);
+        z = z + l2*dt_range*(z_m - z);
     }
 }
