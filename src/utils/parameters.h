@@ -19,20 +19,35 @@ const float a1 = 2.224e-10; // Lab 02
 const float a2 = 1.258e-07; // Lab 02
 const float kl = 1.313e-08; // Constante de sustentação
 const float kd = 9.628e-11; // Lab 04 
+
 const float dt = 0.002;
 const float dt_range = 0.050;
-const float wc = 1.0;
-const float alpha = (wc*dt)/(1.0+wc*dt);
+
+// Ganho estimador de atitude
+const float omega_C = 1.0;
+const float alpha = (omega_C*dt)/(1.0+omega_C*dt);
+
+// Ganho controlador de atitude
+const float UP = 0.002;
 const float Ts = 0.3;
-const float OS = 0.002;
-const float zetta = abs(log(OS))/(sqrt(log(OS)*log(OS)+pi*pi));
-const float wn = 4/(zetta*Ts);
-const float kp1 = wn*wn;
-const float kd1 = 2*zetta*wn;
-const float l1 = wc*wc;
-const float l2 = 2*zetta*wc;
+const float zetta = abs(log(UP))/sqrt(pi*pi+log(UP)*log(UP));
+const float wn = 4.0/(zetta*Ts);
+const float kp_att = wn*wn;
+const float kd_att = 2.0*zetta*wn;
 
+const float Ts_psi = 0.5;
+const float wn_psi = 4.0/(zetta*Ts_psi);
+const float kp_att_psi = wn_psi*wn_psi;
+const float kd_att_psi = 2.0*zetta*wn_psi;
 
+// Ganho estimador vertical
+const float w_c = 10.0;
+const float zetta_vert = sqrt(2.0)/2.0;
+const float l1 = w_c*w_c;
+const float l2 = w_c*2*zetta_vert;
 
+// Ganho controlador vertical
+const float kp_cv = 5.8567;
+const float kd_cv = 3.4225;
 
 #endif
