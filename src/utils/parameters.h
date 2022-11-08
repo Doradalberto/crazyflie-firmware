@@ -50,4 +50,12 @@ const float l2 = w_c*2*zetta_vert;
 const float kp_cv = 5.8567;
 const float kd_cv = 3.4225;
 
+// Estimador Horizontal
+const float angulo_visao_gamma = 42*(pi/180);
+const float resolucao_W = 420;
+const float sigma = (2*tan(angulo_visao_gamma/2))/(resolucao_W*dt);
+
+const float freq_corte_wc = 50; //rad/s
+const float l1_horizontal = freq_corte_wc*freq_corte_wc;
+
 #endif
