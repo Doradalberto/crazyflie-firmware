@@ -4,7 +4,7 @@
 #include <cmath>
 
 // Physical constants
-const float pi = 3.1416;
+const float pi = 3.1415;
 const float g = 9.81;       // m/s^2
 
 // Quadcopter dimensions
@@ -17,6 +17,7 @@ const float l = 33.0e-3;    // m
 // Valores obtidos
 const float a1 = 2.224e-10; // Lab 02
 const float a2 = 1.258e-07; // Lab 02
+
 const float kl = 1.313e-08; // Constante de sustentação
 const float kd = 9.628e-11; // Lab 04 
 
@@ -28,7 +29,7 @@ const float omega_C = 1.0;
 const float alpha = (omega_C*dt)/(1.0+omega_C*dt);
 
 // Ganho controlador de atitude
-const float UP = 0.002;
+const float UP = 0.005;
 const float Ts = 0.3;
 const float zetta = abs(log(UP))/sqrt(pi*pi+log(UP)*log(UP));
 const float wn = 4.0/(zetta*Ts);
@@ -51,11 +52,18 @@ const float kp_cv = 5.8567;
 const float kd_cv = 3.4225;
 
 // Estimador Horizontal
-const float angulo_visao_gamma = 42*(pi/180);
-const float resolucao_W = 420;
-const float sigma = (2*tan(angulo_visao_gamma/2))/(resolucao_W*dt);
+const float angulo_visao_gamma = 42.0*(pi/180.0);
+const float resolucao_W = 420.0;
+const float sigma = (2.0*tan(angulo_visao_gamma/2.0))/(resolucao_W*dt);
 
-const float freq_corte_wc = 50; //rad/s
-const float l1_horizontal = freq_corte_wc*freq_corte_wc;
+const float l1_horizontal = 50.0;
 
+// Controlador horizontal 
+const float OS_Horizontal = 0.005;
+const float Ts_Horizontal = 2.0;
+const float zetta_hor= abs(log(OS_Horizontal))/sqrt(pi*pi+log(OS_Horizontal)*log(OS_Horizontal));
+
+const float wn_hor = 4.0/(zetta_hor*Ts_Horizontal);
+const float kp_hor = wn_hor*wn_hor;
+const float kd_hor = 2.0*zetta_hor*wn_hor;
 #endif
