@@ -55,7 +55,7 @@ int main(){
             else if(t < (ts+tv)){
                 z_r = h;
             }
-            else if(t < (tt+1.5)){
+            else if(t < (tt+3.0)){
                 z_r = (h/td)*(tt-t);
             }
             else {
